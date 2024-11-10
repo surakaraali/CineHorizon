@@ -1,0 +1,48 @@
+# Windows sistem dosyaları
+Thumbs.db
+Desktop.ini
+
+# .NET Core / .NET Framework build ve bağımlılık dosyaları
+bin/
+obj/
+
+# Kullanıcıya özel dosyalar
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Visual Studio ile ilgili dosyalar
+.vs/
+.vscode/
+.idea/
+
+# Paket yöneticileri
+packages/
+
+# .NET bağımlılıkları
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Azure Pipeline / CI
+.vsts/
+
+# Web yayınlama
+publish/
+
+# Logs
+logs/
+log/
+
+# Docker imajları
+docker-compose.override.yml
+
+# JetBrains Rider ile ilgili dosyalar
+.idea/
+
+# Test sonucu dosyaları
+testresults/
+
+# node_modules (npm/yarn ile yüklenen bağımlılıklar)
+node_modules/
