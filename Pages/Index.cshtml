@@ -1,12 +1,25 @@
 ﻿@page
-@model IndexModel
+@model YourProject.Pages.IndexModel
+
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web applications</a>.</p>
-    <p>Let's build.</p>
-    <p>building start test</p>
+    <h1 class="display-4">Most Watched</h1>
+</div>
+
+<h2>Top 10 on IMDb this week</h2>
+
+<h2>In theaters</h2>
+
+<div class="row">
+    @foreach (var movie in Model.Movies)
+    {
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                @await Component.InvokeAsync("MovieCard", new { movie = movie })
+            </a>
+        </div>
+    }
 </div>
