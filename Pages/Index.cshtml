@@ -1,5 +1,6 @@
 ﻿@page
-@model IndexModel
+@model YourProject.Pages.IndexModel
+
 @{
     ViewData["Title"] = "Home page";
 }
@@ -7,16 +8,18 @@
 <div class="text-center">
     <h1 class="display-4">Most Watched</h1>
 </div>
- <h2>Top 10 on IMDb this</h2>
 
+<h2>Top 10 on IMDb this week</h2>
 
+<h2>In theaters</h2>
 
-
-    <h2>In theaters</h2>
-    <div class="height img-fluid rounded float-start mx-auto">
-    <img src="/img/ters_yüz_2.jpg" alt="">
-    <img src="/img/venom.jpg.jpg" alt="">
-    <img src="/img/vahşi_robot.jpg" alt="">
-    <img src="/img/cumhuriyet_sarkısı.jpg" alt="">
-
+<div class="row">
+    @foreach (var movie in Model.Movies)
+    {
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                @await Component.InvokeAsync("MovieCard", new { movie = movie })
+            </a>
+        </div>
+    }
 </div>
