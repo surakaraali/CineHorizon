@@ -5,20 +5,29 @@
     ViewData["Title"] = Model.Movie.Title;
 }
 
-<h1 > @Model.Movie.Title</h1>
-<p>  @Model.Movie.ReleaseYear</p>
-<p>@Model.Movie.MovieHour</p>
+
+<h1> @Model.Movie.Title</h1>
+<div>
+    <p> @Model.Movie.ReleaseYear</p>
+    <p>@Model.Movie.MovieHour</p>
+</div>
 <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="img-fluid rounded">
-<!-- <iframe src=-- .............. Fragmanı databaseden çekmemiz lazım. model.movie.trailer lazım --> 
-<p>@Model.Movie.Genres</p>
-<p>@Model.Movie.Genres1</p>
-<p>@Model.Movie.Genres2</p>
-<p>@Model.Movie.Genres3</p>
-<p><strong>Description:</strong> @Model.Movie.Description</p>
-<p><strong>Year:</strong> @Model.Movie.ReleaseYear</p>
-<p><strong>Rating:</strong> @Model.Movie.Rating / 10</p> 
-<p><strong>Director:</strong> @Model.Movie.Director</p>
-<p><strong>Writer:</strong>@Model.Movie.Writer</p>
-<p><strong>Actors:</strong>@Model.Movie.Actors</p>
-<p><strong></strong>@Model.Movie.Actors1</p>
-<p><strong></strong>@Model.Movie.Actors2</p>
+<!-- <iframe src=-- .............. Fragmanı databaseden çekmemiz lazım. model.movie.trailer lazım -->
+<div class="genres">
+    <p>@Model.Movie.Genres</p>
+    <p>@Model.Movie.Genres1</p>
+    <p>@Model.Movie.Genres2</p>
+    <p>@Model.Movie.Genres3</p>
+</div>
+
+<div class="long_description"><p><strong>Description:</strong> @Model.Movie.Description</p> </div>
+<div class="release_year"> <p><strong>Year:</strong> @Model.Movie.ReleaseYear</p></div>
+<div>
+   <div class="director"><p><strong>Director:</strong> @Model.Movie.Director</p></div> 
+    <div class="writer"><p><strong>Writer:</strong>@Model.Movie.Writer</p></div>
+    <div class="actors">
+        <div class="actors0"><p><strong>Actors:</strong>@Model.Movie.Actors</p></div>
+        <div class="actors1"><p><strong></strong>@Model.Movie.Actors1</p></div>
+        <div class="actors2"><p><strong></strong>@Model.Movie.Actors2</p></div>
+    </div>
+</div>
