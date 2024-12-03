@@ -1,24 +1,42 @@
 ﻿@page
 @model YourProject.Pages.IndexModel
 
+
+<style>
+    h1 {
+        color: rgb(149, 4, 4);
+        font-weight: bold;
+        font-family: serif;
+        font-size: 300%;
+    }
+
+    h2 {
+        color: black;
+        font-weight: 100;
+        font-family: serif;
+        font-size: 250%;
+    }
+</style>
+
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Most Watched</h1>
+    <h1 class="display-4"> MOST WATCHED </h1>
 </div>
+<br>
 
-<h2>Top 10 on IMDb this week</h2>
+<h2> Top 10 on IMDb this week</h2>
 
-<h2>In theaters</h2>
+
 
 <div class="row">
     @foreach (var movie in Model.Movies)
     {
         <div class="col-md-3 col-sm-6 mb-4">
             <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
-                @await Component.InvokeAsync("MovieCard", new { movie = movie })
+                @await Component.InvokeAsync("MovieCardWithoutDesc", new { movie = movie })
             </a>
         </div>
     }

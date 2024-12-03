@@ -5,29 +5,45 @@
     ViewData["Title"] = Model.Movie.Title;
 }
 
-
-<h1> @Model.Movie.Title</h1>
+<h1>@Model.Movie.Title</h1>
 <div>
-    <p> @Model.Movie.ReleaseYear</p>
+    <p>@Model.Movie.ReleaseYear</p>
     <p>@Model.Movie.MovieHour</p>
 </div>
 <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="img-fluid rounded">
-<!-- <iframe src=-- .............. Fragmanı databaseden çekmemiz lazım. model.movie.trailer lazım -->
+
+<!-- Fragmanı databaseden çekme kısmı -->
+
 <div class="genres">
-    <p>@Model.Movie.Genres</p>
-    <p>@Model.Movie.Genres1</p>
-    <p>@Model.Movie.Genres2</p>
-    <p>@Model.Movie.Genres3</p>
+    <strong>Genres:</strong>
+    <ul>
+        @foreach (var genre in Model.Movie.Genres)
+        {
+            <li>@genre</li>
+        }
+    </ul>
 </div>
 
-<div class="long_description"><p><strong>Description:</strong> @Model.Movie.Description</p> </div>
-<div class="release_year"> <p><strong>Year:</strong> @Model.Movie.ReleaseYear</p></div>
+<div class="long_description">
+    <p><strong>Description:</strong> @Model.Movie.Description</p>
+</div>
+<div class="release_year">
+    <p><strong>Year:</strong> @Model.Movie.ReleaseYear</p>
+</div>
 <div>
-   <div class="director"><p><strong>Director:</strong> @Model.Movie.Director</p></div> 
-    <div class="writer"><p><strong>Writer:</strong>@Model.Movie.Writer</p></div>
+    <div class="director">
+        <p><strong>Director:</strong> @Model.Movie.Director</p>
+    </div>
+    <div class="writer">
+        <p><strong>Writer:</strong> @Model.Movie.Writer</p>
+    </div>
     <div class="actors">
-        <div class="actors0"><p><strong>Actors:</strong>@Model.Movie.Actors</p></div>
-        <div class="actors1"><p><strong></strong>@Model.Movie.Actors1</p></div>
-        <div class="actors2"><p><strong></strong>@Model.Movie.Actors2</p></div>
+        <strong>Actors:</strong>
+        <ul>
+            @foreach (var actor in Model.Movie.Actors)
+            {
+                <li>@actor</li>
+            }
+        </ul>
     </div>
 </div>
