@@ -1,0 +1,12 @@
+@page "{id}"
+@model YourProject.Pages.MovieDetailsModel
+
+@{
+    ViewData["Title"] = Model.Movie.Title;
+}
+
+<h1>@Model.Movie.Title</h1>
+<img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="img-fluid rounded">
+<p><strong>Description:</strong> @Model.Movie.Description</p>
+<p><strong>Year:</strong> @Model.Movie.ReleaseYear</p>
+<p><strong>Rating:</strong> @Model.Movie.Rating / 10</p>
