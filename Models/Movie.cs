@@ -13,9 +13,10 @@ namespace YourProject.Models
         public string MovieHour { get; set; }
         public string Director { get; set; }
         public string Writer { get; set; }
+        public string Trailer { get; set; }
         public List<string> Actors { get; set; } // Actors da bir liste oldu
 
-        public Movie(string title, string description, string posterUrl, double rating, int releaseYear, List<string> genres, string movieHour, string director, string writer, List<string> actors)
+        public Movie(string title, string description, string posterUrl, double rating, int releaseYear, List<string> genres, string movieHour, string director, string writer, List<string> actors,string trailer)
         {
             Title = title;
             Description = description;
@@ -27,6 +28,7 @@ namespace YourProject.Models
             Director = director;
             Writer = writer;
             Actors = actors;
+            Trailer = trailer;
         }
     }
 }

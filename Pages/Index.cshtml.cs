@@ -6,24 +6,25 @@ namespace YourProject.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<Movie>? Movies { get; set; }
+        public List<Movie>  ? Movies { get; set; }
 
         public void OnGet()
         {
 
             Movies = new List<Movie>
 {
-    new Movie(
+      new Movie(
         title: "The Godfather",
         description: "Michael, the young and idealistic son of Vito Corleone, the head of the most powerful Mafia clan in New York, returns home as a war hero and is determined to live his own life. But tragic circumstances make him face the legacy of his family.",
         posterUrl: "/img/godfather.jpeg",
         rating: 9.2,
         releaseYear: 1972,
-        genres: new List<string> {"Gangster","Tragedy","Drama","Crime"},
+        genres: new List<string> { "Gangster", "Tragedy", "Drama", "Crime" },
         movieHour: "2h 55m",
         director: "Francis Ford Coppola",
         writer: "Mario Puzo and Francis Ford Coppola",
-        actors: new List<string> {"Marlon Brando","Al Pacino","James Caan"}
+        actors: new List<string> { "Marlon Brando", "Al Pacino", "James Caan" },
+        trailer: "https://www.youtube.com/embed/sY1S34973zA" 
     ),
     new Movie(
         title: "Fight Club",
@@ -31,11 +32,14 @@ namespace YourProject.Pages
         posterUrl: "/img/fight_club.jpeg",
         rating: 8.8,
         releaseYear: 1999,
-        genres: new List<string> {"Drama", "Psychologic", "Action", "Adventure"},
+        genres: new List<string> { "Drama", "Psychologic", "Action", "Adventure" },
         movieHour: "2h 19m",
         director: "David Fincher",
         writer: "Chuck Palahniuk and Jim Uhls",
-        actors: new List<string> { "Brad Pitt", "Edward Norton", "Meat Loaf" }
+        actors: new List<string> { "Brad Pitt", "Edward Norton", "Meat Loaf"},
+        trailer: "https://www.youtube.com/embed/qtRKdVHc-cE"
+    
+        
     ),
     new Movie(
         title: "Cumhuriyet Şarkısı",
@@ -47,7 +51,8 @@ namespace YourProject.Pages
         movieHour: "2h 8m",
         director: "Yağız Alp Akaydın",
         writer: "BKM",
-        actors: new List<string> { "Salih Bademci", "Birce Akalay", "Ertan Saban" }
+        actors: new List<string> { "Salih Bademci", "Birce Akalay", "Ertan Saban" },
+        trailer:"https://www.youtube.com/embed/xC5zEa4VKhw"
     ),
     new Movie(
         title: "Matrix",
@@ -59,7 +64,8 @@ namespace YourProject.Pages
         movieHour: "2h 16m",
         director: "Lana Wachowski and Lilly Wachowski",
         writer: "Lana Wachowski and Lilly Wachowski",
-        actors: new List<string> { "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss" }
+        actors: new List<string> { "Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss" },
+        trailer:"https://www.youtube.com/embed/vKQi3bBA1y8"
     ),
     new Movie(
         title: "Panda Bear Africa",
@@ -71,7 +77,8 @@ namespace YourProject.Pages
         movieHour: "1h 24m",
         director: "Karsten Killerich and Richard Claus",
         writer: "Rob Sprackling",
-        actors: new List<string> { "Maurits Delchot", "Thom Hoffman", "Silas Lekgoathi" }
+        actors: new List<string> { "Maurits Delchot", "Thom Hoffman", "Silas Lekgoathi" },
+        trailer:"https://www.youtube.com/embed/EQqaxagNUXw"
     ),
     new Movie(
         title: "Inside Out 2",
@@ -83,7 +90,8 @@ namespace YourProject.Pages
         movieHour: "1h 36m",
         director: "Kelsey Menn",
         writer: "Meg LeFauve and Dave Holstein",
-        actors: new List<string> { "Amy Poehler", "Maya Hawke", "Kensington Tallman" }
+        actors: new List<string> { "Amy Poehler", "Maya Hawke", "Kensington Tallman" },
+        trailer:"https://www.youtube.com/embed/LEjhY15eCx0"
     ),
     new Movie(
         title: "Inside Out",
@@ -95,7 +103,8 @@ namespace YourProject.Pages
         movieHour: "1h 35m",
         director: "Pete Docter and Ronnie Del Carmen",
         writer: "Pete Docter, Ronnie Del Carmen and Meg LeFauve",
-        actors: new List<string> { "Amy Poehler", "Bill Hader", "Lewis Black" }
+        actors: new List<string> { "Amy Poehler", "Bill Hader", "Lewis Black" },
+        trailer:"https://www.youtube.com/embed/1t0A_tZGrYw"
     ),
     new Movie(
         title: "Interstellar",
@@ -107,7 +116,8 @@ namespace YourProject.Pages
         movieHour: "2h 49m",
         director: "Christopher Nolan",
         writer: "Jonathan Nolan and Christopher Nolan",
-        actors: new List<string> { "Matthew McConaughey", "Anne Hathaway", "Jessica Chastain" }
+        actors: new List<string> { "Matthew McConaughey", "Anne Hathaway", "Jessica Chastain" },
+        trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"
     ),
     new Movie(
         title: "The Prestige",
@@ -119,7 +129,8 @@ namespace YourProject.Pages
         movieHour: "2h 10m",
         director: "Christopher Nolan",
         writer: "Jonathan Nolan and Christopher Priest",
-        actors: new List<string> { "Christian Bale", "Hugh Jackman", "Scarlett Johansson" }
+        actors: new List<string> { "Christian Bale", "Hugh Jackman", "Scarlett Johansson" },
+        trailer:"https://www.youtube.com/embed/RLtaA9fFNXU"
     ),
     new Movie(
         title: "The Silence of the Lambs",
@@ -131,7 +142,8 @@ namespace YourProject.Pages
         movieHour: "1h 58m",
         director: "Jonathan Demme",
         writer: "Thomas Harris and Ted Tally",
-        actors: new List<string> { "Jodie Foster", "Anthony Hopkins", "Scott Glenn" }
+        actors: new List<string> { "Jodie Foster", "Anthony Hopkins", "Scott Glenn" },
+        trailer:"https://www.youtube.com/embed/6iB21hsprAQ"
     ),
     new Movie(
         title: "The Star Wars",
@@ -143,7 +155,8 @@ namespace YourProject.Pages
         movieHour: "2h 4m",
         director: "Irvin Kershner",
         writer: "Leigh Brackett and Lawrence Kasdan George Lucas",
-        actors: new List<string> { "Mark Hamill", "Harrison Ford", "Carrie Fisher" }
+        actors: new List<string> { "Mark Hamill", "Harrison Ford", "Carrie Fisher" },
+        trailer:"https://www.youtube.com/embed/JNwNXF9Y6kY"
     ),
     new Movie(
         title: "The Schindler's List",
@@ -155,9 +168,10 @@ namespace YourProject.Pages
         movieHour: "3h 15m",
         director: "Steven Spielberg",
         writer: "Thomas Keneally and Steven Zaillian",
-        actors: new List<string> { "Liam Neeson", "Ralph Fiennes", "Ben Kingsley" }
+        actors: new List<string> { "Liam Neeson", "Ralph Fiennes", "Ben Kingsley" },
+        trailer:"https://www.youtube.com/embed/gG22XNhtnoY"
     )
-};
+                };
 
         }
     }
