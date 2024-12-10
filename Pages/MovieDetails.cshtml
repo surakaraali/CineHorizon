@@ -5,8 +5,137 @@
     ViewData["Title"] = Model.Movie.Title;
 }
 
+<style>
+    #ReleaseYear {
+
+        font-size: 20px;
+        color: rgb(36, 36, 36);
+        display: inline-block;
+    }
+
+    #MovieHour {
+        font-size: 20px;
+        color: rgb(37, 37, 37);
+        display: inline-block;
+
+
+    }
+
+    #dot {
+        display: inline-block;
+
+    }
+
+    .Poster {
+        width: 278px;
+        height: 412px;
+        object-fit: cover;
+        /* Görüntüyü kırpmadan tam sığdırır */
+        border-radius: 5px;
+        /* Kenarları yuvarlama (isteğe bağlı) */
+    }
+
+    .Trailer {
+        width: 700px;
+        height: 412px;
+        border-radius: 5px;
+        /* Kenarları yuvarlama (isteğe bağlı) */
+
+    }
+
+    .movie-container {
+        display: flex;
+        /* Poster ve Trailer yan yana */
+        align-items: center;
+        /* Dikey hizalamayı ortalar */
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .genres {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .genres strong {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .genres ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .genres ul li {
+        padding: 5px 10px;
+        border: 1px solid #a8a7a7;
+        border-radius: 20px;
+        background-color: #dddcdc;
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .genres ul li:hover {
+        background-color: #fbfafa;
+        cursor: pointer;
+    }
+
+    }
+ 
+  
+</style>
+
 <h1>@Model.Movie.Title</h1>
-<img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="img-fluid rounded">
-<p><strong>Description:</strong> @Model.Movie.Description</p>
-<p><strong>Year:</strong> @Model.Movie.ReleaseYear</p>
-<p><strong>Rating:</strong> @Model.Movie.Rating / 10</p>
+<div>
+    <p id="ReleaseYear">@Model.Movie.ReleaseYear</p>
+    <p id="dot"> • </p>
+    <p id="MovieHour">@Model.Movie.MovieHour</p>
+</div>
+
+
+<div class="movie-container">
+    <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="Poster">
+    <iframe src="@Model.Movie.Trailer" frameborder="0" class="Trailer"></iframe>
+</div>
+
+<div class="genres">
+
+    <ul>
+        @foreach (var genre in Model.Movie.Genres)
+        {
+            <li>@genre</li>
+        }
+    </ul>
+</div>
+
+
+<div class="long_description">
+    <p><strong> @Model.Movie.Description</p>
+</div>
+
+
+<div>
+    <div class="director">
+        <p><strong>Director:</strong> @Model.Movie.Director</p>
+    </div>
+    <div class="writer">
+        <p><strong>Writer:</strong> @Model.Movie.Writer</p>
+    </div>
+    <div class="actors">
+        <strong>Actors:</strong>
+        <ul>
+            @foreach (var actor in Model.Movie.Actors)
+            {
+                <li>@actor</li>
+            }
+        </ul>
+    </div>
+</div>

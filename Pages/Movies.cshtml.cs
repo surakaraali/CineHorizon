@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using YourProject.Models; // Movie modelinin bulunduğu namespace
+
 
 namespace MyWebApp.Pages;
 
@@ -16,4 +18,3 @@ public class MoviesModel : PageModel
     {
     }
 }
-
