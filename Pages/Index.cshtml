@@ -5,18 +5,53 @@
 <style>
 
 
-    h1 {
-        color: rgb(149, 4, 4);
-        font-weight: bold;
-        font-family: serif;
-        font-size: 300%;
-    }
-
     h2 {
         color: black;
         font-weight: 100;
         font-family: serif;
         font-size: 250%;
+    }
+
+    /* Scrollable container */
+    .d-flex {
+        gap: 10px; /* Gap between movie cards */
+    }
+
+    /* Movie card styling */
+    .movie-card {
+        width: 200px;
+        flex-shrink: 0; /* Prevent shrinking */
+        text-align: center;
+    }
+
+    /* Movie poster */
+    .movie-poster {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    /* Hover effect */
+    .movie-poster:hover {
+        transform: scale(1.05);
+    }
+
+    /* Movie info */
+    .movie-info {
+        margin-top: 10px;
+    }
+
+    .movie-title {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .movie-year {
+        font-size: 0.9rem;
+        color: gray;
     }
 </style>
 
@@ -24,22 +59,33 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4"> CineHorizon MOST WATCHED </h1>
+
+<h2> Top 10 on CineHorizon this week</h2>
+
+
+
+@{
+    // Rastgele sıralama için Random nesnesi oluşturuluyor
+    var random = new Random();
+
+    // Model.Movies listesini rastgele sıraya diziyoruz ve ilk 10 tanesini alıyoruz
+    var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
+}
+
+<div class="container mt-4">
+    <div class="d-flex overflow-auto">
+        @foreach (var movie in randomMovies)
+        {
+            <div class="movie-card mx-2">
+                <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                    <img src="@movie.PosterUrl" alt="@movie.Title poster" class="movie-poster">
+                </a>
+                <div class="movie-info text-center">
+                    <h5 class="movie-title text-truncate">@movie.Title</h5>
+                    <p class="movie-year">@movie.ReleaseYear</p>
+                </div>
+            </div>
+        }
+    </div>
 </div>
-<br>
 
-<h2> Top 10 on IMDb this week</h2>
-
-
-
-<div class="row">
-    @foreach (var movie in Model.Movies)
-    {
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
-                @await Component.InvokeAsync("MovieCardWithoutDesc", new { movie = movie })
-            </a>
-        </div>
-    }
-</div>

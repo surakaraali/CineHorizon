@@ -2,7 +2,7 @@
 @model YourProject.Pages.MovieDetailsModel
 
 @{
-    ViewData["Title"] = Model.Movie.Title;
+    ViewData["Title"] = Model.Movie!.Title!; // ! means: it can't be null reference anyway. 
 }
 
 <style>
@@ -44,10 +44,8 @@
     }
 
     .movie-container {
-        display: flex;
-        /* Poster ve Trailer yan yana */
-        align-items: center;
-        /* Dikey hizalamayı ortalar */
+        display: flex;  /* Poster ve Trailer yan yana */
+        align-items: center; /* Dikey hizalamayı ortalar */
         gap: 5px;
         margin-bottom: 10px;
     }
