@@ -1,3 +1,22 @@
+// namespace YourProject.Models
+// {
+//     public class Movie
+//     {
+//         public int MovieId { get; set; }  // Film ID'si, primary key
+//         public string? Title { get; set; } // Film başlığı
+//         public string? Description { get; set; } // Film açıklaması
+//         public string? PosterUrl { get; set; } // Film afişi URL'si
+//         public double Rating { get; set; } // Film puanı
+//         public int ReleaseYear { get; set; } // Çıkış yılı
+//         public string? MovieHour { get; set; } // Film süresi
+//         public string? Director { get; set; } // Yönetmen
+//         public string? Writer { get; set; } // Senarist
+//          public string? Trailer { get; set; } // Film fragmanı URL'si
+//         public List<MovieGenre>? MovieGenres { get; set; } // Film ile ilgili türler
+//         public List<MovieActor>? MovieActors { get; set; } // Filmdeki oyuncular
+//     }
+// }
+
 namespace YourProject.Models
 {
     using System.Collections.Generic;
