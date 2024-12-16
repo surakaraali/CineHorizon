@@ -1,14 +1,14 @@
 ﻿@page
-@model YourProject.Pages.SeriesLayoutModel
+@model MyWebApp.Pages.SeriesLayoutModel
 @{
-    ViewData["Title"] = "MOVIES PAGE";
+    ViewData["Title"] = "SERIES PAGE";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Series PAGE</p>
 
 <div class="row">
-    @foreach (var movie in Model!.Movies!) // ! means: it can't be null reference anyway. 
+    @foreach (var movie in Model!.Movies!) 
     {
         <div class="col-md-3 col-sm-6 mb-4">
             <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">

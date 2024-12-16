@@ -12,7 +12,16 @@
     <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+  </ItemGroup>
+
   <Target Name="Tailwind" BeforeTargets="Build">
-    <Exec Command="npm run css:build"/>
+    <Exec Command="npm run css:build" />
   </Target> 
 </Project>

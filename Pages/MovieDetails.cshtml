@@ -1,13 +1,13 @@
 @page "{id}"
-@model YourProject.Pages.MovieDetailsModel
+@using MyWebApp.Models
+@model MyWebApp.Pages.MovieDetailsModel
 
 @{
-    ViewData["Title"] = Model.Movie!.Title!; // ! means: it can't be null reference anyway. 
+    ViewData["Title"] = "DETAILS"; 
 }
 
 <style>
     #ReleaseYear {
-
         font-size: 20px;
         color: rgb(36, 36, 36);
         display: inline-block;
@@ -17,35 +17,28 @@
         font-size: 20px;
         color: rgb(37, 37, 37);
         display: inline-block;
-
-
     }
 
     #dot {
         display: inline-block;
-
     }
 
     .Poster {
         width: 278px;
         height: 412px;
         object-fit: cover;
-        /* Görüntüyü kırpmadan tam sığdırır */
         border-radius: 5px;
-        /* Kenarları yuvarlama (isteğe bağlı) */
     }
 
     .Trailer {
         width: 700px;
         height: 412px;
         border-radius: 5px;
-        /* Kenarları yuvarlama (isteğe bağlı) */
-
     }
 
     .movie-container {
-        display: flex;  /* Poster ve Trailer yan yana */
-        align-items: center; /* Dikey hizalamayı ortalar */
+        display: flex;
+        align-items: center;
         gap: 5px;
         margin-bottom: 10px;
     }
@@ -78,61 +71,53 @@
         font-size: 14px;
         color: #333;
         text-align: center;
-        white-space: nowrap;
     }
 
     .genres ul li:hover {
         background-color: #fbfafa;
         cursor: pointer;
     }
-
-    }
- 
-  
 </style>
 
-<h1>@Model.Movie.Title</h1>
+<h1>@Model.Movie?.Title</h1>
+
 <div>
-    <p id="ReleaseYear">@Model.Movie.ReleaseYear</p>
+    <p id="ReleaseYear">@Model.Movie?.Releaseyear</p>
     <p id="dot"> • </p>
-    <p id="MovieHour">@Model.Movie.MovieHour</p>
+    <p id="MovieHour">@Model.Movie?.Moviehour</p>
 </div>
 
-
 <div class="movie-container">
-    <img src="@Model.Movie.PosterUrl" alt="@Model.Movie.Title poster" class="Poster">
-    <iframe src="@Model.Movie.Trailer" frameborder="0" class="Trailer"></iframe>
+    <img src="@Model.Movie?.Posterurl" alt="@Model.Movie?.Title poster" class="Poster">
+    <iframe src="@Model.Movie?.Trailer" frameborder="0" class="Trailer"></iframe>
 </div>
 
 <div class="genres">
-
     <ul>
-        @foreach (var genre in Model.Movie.Genres)
+        @foreach (var genre in Model.Movie?.Genres ?? new List<Genre>())
         {
-            <li>@genre</li>
+            <li>@genre?.Name</li>
         }
     </ul>
 </div>
 
-
 <div class="long_description">
-    <p><strong> @Model.Movie.Description</p>
+    <p><strong>@Model.Movie?.Description</strong></p>
 </div>
-
 
 <div>
     <div class="director">
-        <p><strong>Director:</strong> @Model.Movie.Director</p>
+        <p><strong>Director:</strong> @Model.Movie?.Director</p>
     </div>
     <div class="writer">
-        <p><strong>Writer:</strong> @Model.Movie.Writer</p>
+        <p><strong>Writer:</strong> @Model.Movie?.Writer</p>
     </div>
     <div class="actors">
         <strong>Actors:</strong>
         <ul>
-            @foreach (var actor in Model.Movie.Actors)
+            @foreach (var actor in Model.Movie?.Actors ?? new List<Actor>())
             {
-                <li>@actor</li>
+                <li>@actor?.Name</li>
             }
         </ul>
     </div>
