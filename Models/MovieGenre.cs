@@ -1,11 +1,13 @@
-// namespace YourProject.Models
-// {
-//     public class MovieGenre
-//     {
-//         public int MovieId { get; set; }
-//         public Movie? Movie { get; set; }
+using MyWebApp.Models;  
 
-//         public int GenreId { get; set; }
-//         public Genre? Genre { get; set; }
-//     }
-// }
+namespace MyWebApp.Models 
+{
+    public class MovieGenre
+    {
+        public int MovieId { get; set; }
+        public Movie? Movie { get; set; }
+
+        public int GenreId { get; set; }
+        public Genre? Genre { get; set; }
+    }
+}

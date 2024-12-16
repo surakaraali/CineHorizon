@@ -1,9 +1,12 @@
-// namespace YourProject.Models
-// {
-//     public class Actor
-//     {
-//         public int ActorId { get; set; } // Aktör ID'si
-//         public string? Name { get; set; } // Aktör adı
-//         public List<MovieActor>? MovieActors { get; set; } // Aktörün rol aldığı filmler
-//     }
-// }
+﻿using System;
+using System.Collections.Generic;
+
+namespace MyWebApp.Models  
+{
+    public partial class Actor
+    {
+        public int Actorid { get; set; }
+        public string Name { get; set; } = null!;
+        public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
+    }
+}

@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using YourProject.Models; // Movie modelini içeren namespace
+using MyWebApp.Models; 
 
-namespace YourProject.Components
+namespace MyWebApp.Components
 {
     public class MovieCardWithoutDescViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke(Movie movie)
         {
-            return View(movie); // Razor dosyasına göndermek için
+            return View(movie);
         }
     }
 }
