@@ -36,21 +36,28 @@ body {
   text-align: center;
   margin: 16px;
   height: 95%;
+ 
 }
 
 .movie-poster {
   max-width: 100%;
   border-radius: 8px;
+  
+
 }
 
 .movie-card h2 {
   font-size: 1.5em;
   margin: 10px 0;
+  color: white;
+ 
+  
 }
 
 .movie-card p {
   font-size: 1em;
   margin: 5px 0;
+  color:white;
 }
 
 

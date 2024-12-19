@@ -3,35 +3,54 @@
 
 
 <style>
+  body {
+  margin: 0; /* Kenar boşluklarını kaldır */
+  padding: 0; /* İç boşlukları kaldır */
+  background-color: #000; /* Arka planı siyah yap */
+  border:#000 none;
+}
 
+   h2 {
+    color: white;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+     font-size: 250%;
+    padding: 0px;
+    margin-top: 60px; /* h2'nin altındaki boşluğu kaldırır */
+}
 
-    h2 {
-        color: black;
-        font-weight: 100;
-        font-family: serif;
-        font-size: 250%;
-    }
+#titledesc {
+    color: white;
+    font-size: 120%;
+    padding-left: 0px;
+    margin-top: 0; /* #titledesc'in üstündeki boşluğu kaldırır */
+}
+    
 
     /* Scrollable container */
     .d-flex {
-        gap: 10px; /* Gap between movie cards */
+        gap: 10px;
+        /* Gap between movie cards */
     }
 
     /* Movie card styling */
     .movie-card {
-        width: 200px;
-        flex-shrink: 0; /* Prevent shrinking */
+        width: 300px;
+        flex-shrink: 0;
         text-align: center;
+        
+       
     }
 
     /* Movie poster */
     .movie-poster {
         width: 100%;
-        height: 300px;
+        height: 380px;
         border-radius: 10px;
         object-fit: cover;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s ease;
+       
     }
 
     /* Hover effect */
@@ -47,6 +66,7 @@
     .movie-title {
         font-size: 1rem;
         font-weight: bold;
+        color:white;
     }
 
     .movie-year {
@@ -55,37 +75,45 @@
     }
 </style>
 
-@{
-    ViewData["Title"] = "Home page";
-}
+<body> 
+
+    @{
+        ViewData["Title"] = "Home page";
+    }
 
 
-<h2> Top 10 on CineHorizon this week</h2>
+    <h2> SUGGESTIONS FOR YOU </h2>
+   <p id="titledesc">
+    As suggest for you by CineHorizon voters.
+</p>
 
 
 
-@{
-    // Rastgele sıralama için Random nesnesi oluşturuluyor
-    var random = new Random();
+    @{
+        // Rastgele sıralama için Random nesnesi oluşturuluyor
+        var random = new Random();
 
-    // Model.Movies listesini rastgele sıraya diziyoruz ve ilk 10 tanesini alıyoruz
-    var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
-}
+        // Model.Movies listesini rastgele sıraya diziyoruz ve ilk 10 tanesini alıyoruz
+        var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
+    }
 
-<div class="container mt-4">
-    <div class="d-flex overflow-auto">
-        @foreach (var movie in randomMovies)
-        {
-            <div class="movie-card mx-2">
-                <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
-                    <img src="@movie.PosterUrl" alt="@movie.Title poster" class="movie-poster">
-                </a>
-                <div class="movie-info text-center">
-                    <h5 class="movie-title text-truncate">@movie.Title</h5>
-                    <p class="movie-year">@movie.ReleaseYear</p>
+    <div class="container mt-4">
+        <div class="d-flex overflow-auto">
+            @foreach (var movie in randomMovies)
+            {
+                <div class="movie-card mx-2">
+                    <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                        <img src="@movie.Posterurl" alt="@movie.Title poster" class="movie-poster">
+                    </a>
+                    <div class="movie-info text-center">
+                        <h5 class="movie-title text-truncate">@movie.Title</h5>
+                        <p class="movie-year">@movie.Releaseyear</p>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+    <br>
+    <br>
 
+</body>
