@@ -14,16 +14,21 @@ namespace MyWebApp.Pages
             _context = context;
         }
 
-        public Movie Movie { get; set; }
+        public Movie? Movie { get; set; }
 
         public void OnGet(string id)
         {
-            
-            Movie = _context.Movies
-                .Include(m => m.Genres) 
-                .Include(m => m.Actors) 
-                .FirstOrDefault(movie => movie.Title.Replace(" ", "-").ToLower() == id.ToLower());  
-
+            if (_context.Movies != null)
+            {
+                Movie = _context.Movies
+                    .Include(m => m.Genres)
+                    .Include(m => m.Actors)
+                    .FirstOrDefault(movie => movie.Title.Replace(" ", "-").ToLower() == id.ToLower());
+            }
+            else
+            {
+                Movie = null; 
+            }
         }
     }
 }

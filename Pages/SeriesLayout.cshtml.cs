@@ -14,28 +14,34 @@ namespace MyWebApp.Pages
             _context = context;
         }
 
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
 
         public void OnGet()
         {
-            
-            Movies = _context.Movies
-                .Where(movie => movie.Type == "series") 
-                .Select(movie => new Movie
-                {
-                    Movieid = movie.Movieid,
-                    Title = movie.Title,
-                    Description = movie.Description,
-                    Posterurl = movie.Posterurl,
-                    Rating = movie.Rating,
-                    Releaseyear = movie.Releaseyear,
-                    Moviehour = movie.Moviehour,
-                    Director = movie.Director,
-                    Writer = movie.Writer,
-                    Trailer = movie.Trailer,
-                    Type = movie.Type,
-                })
-                .ToList();
+            if (_context.Movies != null)
+            {
+                Movies = _context.Movies
+                    .Where(movie => movie.Type == "series")
+                    .Select(movie => new Movie
+                    {
+                        Movieid = movie.Movieid,
+                        Title = movie.Title,
+                        Description = movie.Description,
+                        Posterurl = movie.Posterurl,
+                        Rating = movie.Rating,
+                        Releaseyear = movie.Releaseyear,
+                        Moviehour = movie.Moviehour,
+                        Director = movie.Director,
+                        Writer = movie.Writer,
+                        Trailer = movie.Trailer,
+                        Type = movie.Type
+                    })
+                    .ToList();
+            }
+            else
+            {
+                Movies = new List<Movie>();
+            }
         }
     }
 }
