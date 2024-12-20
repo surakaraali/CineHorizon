@@ -1,20 +1,22 @@
-namespace YourProject.Models
-{
-    public class Movie
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string PosterUrl { get; set; }
-        public double Rating { get; set; }
-        public int ReleaseYear { get; set; }
+﻿using System;
+using System.Collections.Generic;
 
-        public Movie(string title, string description, string posterUrl, double rating, int releaseYear)
-        {
-            Title = title;
-            Description = description;
-            PosterUrl = posterUrl;
-            Rating = rating;
-            ReleaseYear = releaseYear;
-        }
+namespace MyWebApp.Models 
+{
+    public partial class Movie
+    {
+        public int Movieid { get; set; }
+        public string Title { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? Posterurl { get; set; }
+        public double? Rating { get; set; }
+        public int? Releaseyear { get; set; }
+        public string? Moviehour { get; set; }
+        public string? Director { get; set; }
+        public string? Writer { get; set; }
+        public string? Trailer { get; set; }
+        public virtual ICollection<Actor> Actors { get; set; } = new List<Actor>();
+        public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
+        public string? Type { get; set; }
     }
 }

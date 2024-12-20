@@ -1,0 +1,19 @@
+@page
+@model MyWebApp.Pages.MoviesLayoutModel
+@{
+    ViewData["Title"] = "MOVIES PAGE";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p> Movies PAGE </p>
+
+<div class="row">
+    @foreach (var movie in Model!.Movies!) // ! means: it can't be null reference anyway. 
+    {
+        <div class="col-md-3 col-sm-6 mb-4">
+            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                @await Component.InvokeAsync("MovieCardWithoutDesc", new { movie = movie })
+            </a>
+        </div>
+    }
+</div>

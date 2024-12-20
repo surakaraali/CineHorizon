@@ -1,25 +1,82 @@
 ﻿@page
-@model YourProject.Pages.IndexModel
+@model MyWebApp.Pages.IndexModel
+
+<style>
+    h2 {
+        color: black;
+        font-weight: 100;
+        font-family: serif;
+        font-size: 250%;
+    }
+
+    .d-flex {
+        gap: 10px; 
+    }
+
+    .movie-card {
+        width: 250px;
+        flex-shrink: 0; 
+        text-align: center;
+    }
+
+    .movie-poster {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .movie-poster:hover {
+        transform: scale(1.05);
+    }
+
+    .movie-info {
+        margin-top: 10px;
+    }
+
+    .movie-title {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .movie-year {
+        font-size: 0.9rem;
+        color: gray;
+    }
+</style>
 
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Most Watched</h1>
+
+<h2> Top 10 on CineHorizon this week</h2>
+
+
+
+@{
+
+    var random = new Random();
+
+    var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
+}
+
+<div class="container mt-4">
+    <div class="d-flex overflow-auto">
+        @foreach (var movie in randomMovies)
+        {
+            <div class="movie-card mx-2">
+                <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                    <img src="@movie.Posterurl" alt="@movie.Title poster" class="movie-poster">
+                </a>
+                <div class="movie-info text-center">
+                    <h5 class="movie-title text-truncate">@movie.Title</h5>
+                    <p class="movie-year">@movie.Releaseyear</p>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
-<h2>Top 10 on IMDb this week</h2>
-
-<h2>In theaters</h2>
-
-<div class="row">
-    @foreach (var movie in Model.Movies)
-    {
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
-                @await Component.InvokeAsync("MovieCard", new { movie = movie })
-            </a>
-        </div>
-    }
-</div>

@@ -1,15 +1,15 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyWebApp.Pages
 {
-    public class IndexModel : PageModel
+    public class SeriesLayoutModel : PageModel
     {
         private readonly CineHorizonDbContext _context;
 
-        public IndexModel(CineHorizonDbContext context)
+        public SeriesLayoutModel(CineHorizonDbContext context)
         {
             _context = context;
         }
@@ -18,8 +18,9 @@ namespace MyWebApp.Pages
 
         public void OnGet()
         {
-            // Veritabanından tüm filmleri çek
+            
             Movies = _context.Movies
+                .Where(movie => movie.Type == "series") 
                 .Select(movie => new Movie
                 {
                     Movieid = movie.Movieid,
@@ -31,7 +32,8 @@ namespace MyWebApp.Pages
                     Moviehour = movie.Moviehour,
                     Director = movie.Director,
                     Writer = movie.Writer,
-                    Trailer = movie.Trailer
+                    Trailer = movie.Trailer,
+                    Type = movie.Type,
                 })
                 .ToList();
         }
