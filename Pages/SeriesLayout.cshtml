@@ -5,13 +5,36 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Series PAGE</p>
+
+<style>
+    body {
+        margin: 0;
+        /* Kenar boşluklarını kaldır */
+        padding: 0;
+        /* İç boşlukları kaldır */
+        background-color: #000;
+        /* Arka planı siyah yap */
+        border: #000 none;
+    }
+
+    h5.mt-3 {
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 15px;
+        letter-spacing: 1px;
+
+    }
+   
+
+</style>
+
 
 <div class="row">
     @foreach (var movie in Model!.Movies!) 
     {
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+            <a href="@Url.Page("/MovieDetails", new { id = movie!.Title!.Replace(" ", "-").ToLower() })">
                 @await Component.InvokeAsync("MovieCardWithoutDesc", new { movie = movie })
             </a>
         </div>

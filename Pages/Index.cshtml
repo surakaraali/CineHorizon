@@ -1,31 +1,50 @@
-﻿@page
+@page
 @model MyWebApp.Pages.IndexModel
 
 <style>
-    h2 {
-        color: black;
-        font-weight: 100;
-        font-family: serif;
-        font-size: 250%;
-    }
+  body {
+  margin: 0; /* Kenar boşluklarını kaldır */
+  padding: 0; /* İç boşlukları kaldır */
+  background-color: #000; /* Arka planı siyah yap */
+  border:#000 none;
+}
+
+   h2 {
+    color: white;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+     font-size: 250%;
+    padding: 0px;
+    margin-top: 60px; /* h2'nin altındaki boşluğu kaldırır */
+}
+
+#titledesc {
+    color: white;
+    font-size: 120%;
+    padding-left: 0px;
+    margin-top: 0; /* #titledesc'in üstündeki boşluğu kaldırır */
+}
 
     .d-flex {
-        gap: 10px; 
+        gap: 10px;
     }
 
     .movie-card {
-        width: 250px;
-        flex-shrink: 0; 
+        width: 300px;
+        flex-shrink: 0;
         text-align: center;
+        
+       
     }
 
     .movie-poster {
         width: 100%;
-        height: 300px;
+        height: 380px;
         border-radius: 10px;
         object-fit: cover;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s ease;
+       
     }
 
     .movie-poster:hover {
@@ -39,6 +58,7 @@
     .movie-title {
         font-size: 1rem;
         font-weight: bold;
+        color:white;
     }
 
     .movie-year {
@@ -47,13 +67,17 @@
     }
 </style>
 
-@{
-    ViewData["Title"] = "Home page";
-}
+<body> 
+
+    @{
+        ViewData["Title"] = "Home page";
+    }
 
 
-<h2> Top 10 on CineHorizon this week</h2>
-
+    <h2> SUGGESTIONS FOR YOU </h2>
+   <p id="titledesc">
+    As suggest for you by CineHorizon voters.
+</p>
 
 
 @{
@@ -75,8 +99,10 @@
                     <h5 class="movie-title text-truncate">@movie.Title</h5>
                     <p class="movie-year">@movie.Releaseyear</p>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+    <br>
+    <br>
 
+</body>

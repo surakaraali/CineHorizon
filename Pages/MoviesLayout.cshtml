@@ -5,13 +5,33 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p> Movies PAGE </p>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        border: #000 none;
+    }
+
+    h5.mt-3 {
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 15px;
+        letter-spacing: 1px;
+
+    }
+
+   
+  
+
+</style>
 
 <div class="row">
-    @foreach (var movie in Model!.Movies!) // ! means: it can't be null reference anyway. 
+    @foreach (var movie in Model.Movies) // ! means: it can't be null reference anyway.
     {
         <div class="col-md-3 col-sm-6 mb-4">
-            <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+            <a href="@Url.Page("/MovieDetails", new { id = movie!.Title!.Replace(" ", "-").ToLower() })">
                 @await Component.InvokeAsync("MovieCardWithoutDesc", new { movie = movie })
             </a>
         </div>
