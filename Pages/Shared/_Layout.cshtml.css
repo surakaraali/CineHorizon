@@ -1,23 +1,53 @@
 ﻿.navbar {
   background-color: #000; 
+  margin: 0; /* Kenar boşluklarını kaldır */
+  border: none; /* Herhangi bir çerçeveyi kaldır */
+  box-shadow: none; /* Gölgeleri kaldır */
 }
+
 .navbar .navbar-brand {
   color: #fff; 
   font-weight: bold;
 }
+
 .navbar .navbar-nav .nav-link {
   color: #fff !important; 
   font-weight: bold;
 }
+
 .navbar .navbar-nav {
   display: flex;
   justify-content: center;
 }
+
 .navbar .custom-nav {
   padding-left: 1px; 
 }
 
-
 .navbar .custom-nav .nav-item {
   margin-right: 20px;
+  
 }
+
+html, body {
+  height: 100%; /* Sayfanın tam yüksekliğini kullan */
+  margin: 0; /* Varsayılan boşlukları kaldır */
+  display: flex;
+  flex-direction: column; /* İçeriği dikey düzenle */
+  
+}
+
+main {
+  flex: 1; /* Ana içeriği kalan alanı dolduracak şekilde ayarla */
+ 
+}
+
+footer {
+  background-color: #000; /* Siyah arka plan */
+  color: #fff; /* Beyaz yazı */
+  text-align: left; 
+  margin: 0; /* Footer kenar boşluklarını kaldır */
+  padding: 0px 0; /* Üst ve alt padding ekle */
+  border-top: none; /* Çizgiyi kaldır */
+}
+
