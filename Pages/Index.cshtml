@@ -2,19 +2,35 @@
 @model MyWebApp.Pages.IndexModel
 
 <style>
-    h2 {
-        color: black;
-        font-weight: 100;
-        font-family: serif;
-        font-size: 250%;
-    }
+     body {
+  margin: 0; /* Kenar boşluklarını kaldır */
+  padding: 0; /* İç boşlukları kaldır */
+  background-color: #000; /* Arka planı siyah yap */
+  border:#000 none;
+}
+
+   h2 {
+    color: white;
+    font-weight: 100;
+    font-family: Arial, Helvetica, sans-serif;
+     font-size: 250%;
+    padding: 0px;
+    margin-top: 60px; /* h2'nin altındaki boşluğu kaldırır */
+}
+
+#titledesc {
+    color: white;
+    font-size: 120%;
+    padding-left: 0px;
+    margin-top: 0; /* #titledesc'in üstündeki boşluğu kaldırır */
+}
 
     .d-flex {
         gap: 10px; 
     }
 
     .movie-card {
-        width: 250px;
+        width: 300px;
         flex-shrink: 0; 
         text-align: center;
     }

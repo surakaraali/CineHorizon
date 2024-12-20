@@ -21,6 +21,7 @@
 
     #dot {
         display: inline-block;
+        color: white;
     }
 
     .Poster {
@@ -28,6 +29,7 @@
         height: 412px;
         object-fit: cover;
         border-radius: 5px;
+        color: white;
     }
 
     .Trailer {
@@ -77,6 +79,65 @@
         background-color: #fbfafa;
         cursor: pointer;
     }
+    .long_description,
+    .director,
+    .writer,
+    .actors {
+        color: white;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .director,
+    .writer,
+    .actors {
+        border-top: 1px solid #444;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .long_description {
+        border-top: none;
+    }
+
+    .director strong,
+    .writer strong,
+    .actors strong {
+        font-weight: bold;
+        margin-right: 0px;
+    }
+
+    .actors ul {
+        display: inline;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0;
+        white-space: nowrap;
+    }
+
+    .actors li {
+        display: inline;
+        margin-right: 15px;
+        cursor: pointer;
+        font-size: 16px;
+        flex-direction: row;
+
+
+    }
+
+    .actors li:hover {
+        text-decoration: underline;
+
+    }
+
+    .long_description p,
+    .director p,
+    .writer p {
+        margin: 0;
+    }
+
 </style>
 
 <h1>@Model.Movie?.Title</h1>

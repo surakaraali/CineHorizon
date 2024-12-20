@@ -36,7 +36,6 @@ body {
   text-align: center;
   margin: 16px;
   height: 95%;
-  text-decoration:none;
 }
 
 .movie-poster {
@@ -46,14 +45,14 @@ body {
 
 .movie-card h2 {
   font-size: 1.5em;
-  margin: 10px 0;
-  text-decoration:none;
+  margin: 10px 0; 
+  color: white;
 }
 
 .movie-card p {
   font-size: 1em;
   margin: 5px 0;
-  text-decoration:none;
+  color:white;
 }
 
 
