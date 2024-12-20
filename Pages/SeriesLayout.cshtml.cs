@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
