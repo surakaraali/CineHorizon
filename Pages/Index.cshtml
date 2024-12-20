@@ -1,6 +1,5 @@
-﻿@page
-@model YourProject.Pages.IndexModel
-
+@page
+@model MyWebApp.Pages.IndexModel
 
 <style>
   body {
@@ -25,15 +24,11 @@
     padding-left: 0px;
     margin-top: 0; /* #titledesc'in üstündeki boşluğu kaldırır */
 }
-    
 
-    /* Scrollable container */
     .d-flex {
         gap: 10px;
-        /* Gap between movie cards */
     }
 
-    /* Movie card styling */
     .movie-card {
         width: 300px;
         flex-shrink: 0;
@@ -42,7 +37,6 @@
        
     }
 
-    /* Movie poster */
     .movie-poster {
         width: 100%;
         height: 380px;
@@ -53,12 +47,10 @@
        
     }
 
-    /* Hover effect */
     .movie-poster:hover {
         transform: scale(1.05);
     }
 
-    /* Movie info */
     .movie-info {
         margin-top: 10px;
     }
@@ -88,27 +80,24 @@
 </p>
 
 
+@{
 
-    @{
-        // Rastgele sıralama için Random nesnesi oluşturuluyor
-        var random = new Random();
+    var random = new Random();
 
-        // Model.Movies listesini rastgele sıraya diziyoruz ve ilk 10 tanesini alıyoruz
-        var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
-    }
+    var randomMovies = Model.Movies!.OrderBy(x => random.Next()).Take(10).ToList();
+}
 
-    <div class="container mt-4">
-        <div class="d-flex overflow-auto">
-            @foreach (var movie in randomMovies)
-            {
-                <div class="movie-card mx-2">
-                    <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
-                        <img src="@movie.Posterurl" alt="@movie.Title poster" class="movie-poster">
-                    </a>
-                    <div class="movie-info text-center">
-                        <h5 class="movie-title text-truncate">@movie.Title</h5>
-                        <p class="movie-year">@movie.Releaseyear</p>
-                    </div>
+<div class="container mt-4">
+    <div class="d-flex overflow-auto">
+        @foreach (var movie in randomMovies)
+        {
+            <div class="movie-card mx-2">
+                <a href="@Url.Page("/MovieDetails", new { id = movie.Title.Replace(" ", "-").ToLower() })">
+                    <img src="@movie.Posterurl" alt="@movie.Title poster" class="movie-poster">
+                </a>
+                <div class="movie-info text-center">
+                    <h5 class="movie-title text-truncate">@movie.Title</h5>
+                    <p class="movie-year">@movie.Releaseyear</p>
                 </div>
             }
         </div>

@@ -1,25 +1,24 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using YourProject.Models;
+using MyWebApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
-
-namespace YourProject.Pages
+namespace MyWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-
         private readonly CineHorizonDbContext _context;
 
-        public IndexModel (CineHorizonDbContext context)
+        public IndexModel(CineHorizonDbContext context)
         {
             _context = context;
-
         }
-        
-        public List<Movie> ? Movies { get; set; }
+
+        public List<Movie> Movies { get; set; }
 
         public void OnGet()
         {
+            // Veritabanından tüm filmleri çek
             Movies = _context.Movies
                 .Select(movie => new Movie
                 {

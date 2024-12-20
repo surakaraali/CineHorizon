@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace YourProject.Models;
+namespace MyWebApp.Models;
 
 public partial class CineHorizonDbContext : DbContext
 {
@@ -22,8 +22,8 @@ public partial class CineHorizonDbContext : DbContext
     public virtual DbSet<Movie> Movies { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=CineHorizonDB;Username=postgres;Password=smltln2071");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=CineHorizonDB;Username=postgres;Password=zeynep123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,9 +36,12 @@ public partial class CineHorizonDbContext : DbContext
             entity.Property(e => e.Actorid).HasColumnName("actorid");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
-                .HasColumnName("name");  // tablolar için omları y<rlıyor.
+                .HasColumnName("name");
         });
 
+         modelBuilder.Entity<Movie>()
+        .Property(m => m.Type)
+        .HasColumnName("type"); 
 
         modelBuilder.Entity<Genre>(entity =>
         {

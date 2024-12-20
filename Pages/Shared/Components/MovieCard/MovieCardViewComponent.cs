@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using YourProject.Models; 
+using MyWebApp.Models; 
 
-namespace YourProject.Components
+namespace MyWebApp.Components
 {
     public class MovieCardViewComponent : ViewComponent
     {

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using YourProject.Models;
+using MyWebApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace YourProject.Pages
+namespace MyWebApp.Pages
 {
     public class MoviesLayoutModel : PageModel
     {
@@ -12,12 +13,13 @@ namespace YourProject.Pages
         {
             _context = context;
         }
-        public List<Movie>? Movies { get; set; }
+
+        public List<Movie> Movies { get; set; }
 
         public void OnGet()
         {
             Movies = _context.Movies
-                .Where(movie => movie.Type == "movie")
+                .Where(movie => movie.Type == "movie") 
                 .Select(movie => new Movie
                 {
                     Movieid = movie.Movieid,
@@ -29,9 +31,14 @@ namespace YourProject.Pages
                     Moviehour = movie.Moviehour,
                     Director = movie.Director,
                     Writer = movie.Writer,
-                    Trailer = movie.Trailer
+                    Trailer = movie.Trailer,
+                    Type = movie.Type
                 })
                 .ToList();
         }
+
+
+
     }
 }
+

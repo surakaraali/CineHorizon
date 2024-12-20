@@ -1,4 +1,6 @@
-namespace YourProject.Models
+using MyWebApp.Models; 
+
+namespace MyWebApp.Models 
 {
     public class MovieActor
     {

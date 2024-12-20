@@ -1,25 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using YourProject.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using MyWebApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace YourProject.Pages
+namespace MyWebApp.Pages
 {
     public class SeriesLayoutModel : PageModel
     {
-      private readonly CineHorizonDbContext _context;
+        private readonly CineHorizonDbContext _context;
 
         public SeriesLayoutModel(CineHorizonDbContext context)
         {
             _context = context;
         }
 
-
-        public List<Movie>? Movies { get; set; }
+        public List<Movie> Movies { get; set; }
 
         public void OnGet()
         {
+            
             Movies = _context.Movies
-                .Where(movie => movie.Type == "series")
+                .Where(movie => movie.Type == "series") 
                 .Select(movie => new Movie
                 {
                     Movieid = movie.Movieid,
@@ -31,11 +32,10 @@ namespace YourProject.Pages
                     Moviehour = movie.Moviehour,
                     Director = movie.Director,
                     Writer = movie.Writer,
-                    Trailer = movie.Trailer
+                    Trailer = movie.Trailer,
+                    Type = movie.Type,
                 })
                 .ToList();
         }
-
+    }
 }
-}
-

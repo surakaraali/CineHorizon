@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
+using MyWebApp.Models;
+using System.Linq;
 
-namespace YourProject.Pages
+namespace MyWebApp.Pages
 {
     public class MovieDetailsModel : PageModel
     {
@@ -15,15 +14,15 @@ namespace YourProject.Pages
             _context = context;
         }
 
-        public Movie? Movie { get; set; }
+        public Movie Movie { get; set; }
 
         public void OnGet(string id)
-
         {
-           Movie = _context.Movies
-           .Include(m=> m.Genres)
-           .Include(m=>m.Actors)
-           .FirstOrDefault(Movie=> Movie.Title.Replace(" ","-").ToLower()== id.ToLower());
+            
+            Movie = _context.Movies
+                .Include(m => m.Genres) 
+                .Include(m => m.Actors) 
+                .FirstOrDefault(movie => movie.Title.Replace(" ", "-").ToLower() == id.ToLower());  
 
         }
     }

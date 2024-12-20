@@ -42,9 +42,12 @@ CREATE TABLE MovieActors (
     FOREIGN KEY (ActorId) REFERENCES Actors(ActorId) ON DELETE CASCADE
 );
 
-
 ALTER TABLE Movies
 ADD type varchar(50);
+
+UPDATE movies
+SET type = 'series'
+WHERE movieid = '1';
 
 UPDATE movies
 SET type = 'movie'
