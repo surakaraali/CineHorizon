@@ -102,3 +102,12 @@ WHERE movieid = '23';
 UPDATE movies
 SET moviehour = '6 seasons, 86 episodes'
 WHERE movieid = '24';
+
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    movieid INT NOT NULL,
+    content TEXT NOT NULL,
+    createdat TIMESTAMP NOT NULL,
+    CONSTRAINT fk_movie_comment FOREIGN KEY (movieid) REFERENCES movies(movieid) ON DELETE CASCADE
+);

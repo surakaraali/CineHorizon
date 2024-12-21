@@ -3,7 +3,7 @@
 @model MyWebApp.Pages.MovieDetailsModel
 
 @{
-    ViewData["Title"] = "DETAILS"; 
+    ViewData["Title"] = "DETAILS";
 }
 
 <style>
@@ -121,4 +121,35 @@
             }
         </ul>
     </div>
+</div>
+
+<div>
+    <h2>Add a Comment</h2>
+    <form method="post">
+        <textarea name="CommentContent" placeholder="Write your comment here..."
+            required>@Model.CommentContent</textarea>
+        <input type="hidden" name="MovieId" value="@Model.Movie?.Movieid" />
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+
+
+<div>
+    <h2>Comments</h2>
+    @if (Model.Comments.Any())
+    {
+        <ul>
+            @foreach (var comment in Model.Comments)
+            {
+                <li>
+                    <strong>@comment.CreatedAt.ToString("yyyy-MM-dd HH:mm"):</strong> @comment.Content
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No comments yet. Be the first to comment!</p>
+    }
 </div>
