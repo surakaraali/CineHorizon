@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyWebApp.Models;
 
@@ -20,9 +21,13 @@ public partial class CineHorizonDbContext : DbContext
     public virtual DbSet<Genre>? Genres { get; set; }
 
     public virtual DbSet<Movie>? Movies { get; set; }
+    
+    public virtual DbSet<Comment>? Comments { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=CineHorizonDB;Username=postgres;Password=zeynep123");
+        => optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("CINEHORIZON_DB_CONNECTION") ??
+                                   "Host=localhost;Database=CineHorizonDB;Username=postgres;Password=zeynep123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -38,9 +43,9 @@ public partial class CineHorizonDbContext : DbContext
                 .HasColumnName("name");
         });
 
-         modelBuilder.Entity<Movie>()
-        .Property(m => m.Type)
-        .HasColumnName("type"); 
+        modelBuilder.Entity<Movie>()
+            .Property(m => m.Type)
+            .HasColumnName("type"); 
 
         modelBuilder.Entity<Genre>(entity =>
         {
@@ -82,8 +87,6 @@ public partial class CineHorizonDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("type");
 
-
-
             entity.HasMany(d => d.Actors).WithMany(p => p.Movies)
                 .UsingEntity<Dictionary<string, object>>(
                     "Movieactor",
@@ -117,6 +120,23 @@ public partial class CineHorizonDbContext : DbContext
                         j.IndexerProperty<int>("Movieid").HasColumnName("movieid");
                         j.IndexerProperty<int>("Genreid").HasColumnName("genreid");
                     });
+        });
+
+        modelBuilder.Entity<Comment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("comments_pkey");
+
+            entity.ToTable("comments");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.MovieId).HasColumnName("movieid");
+            entity.Property(e => e.Content).HasColumnName("content");
+            entity.Property(e => e.CreatedAt).HasColumnName("createdat");
+
+            entity.HasOne<Movie>()
+                .WithMany()
+                .HasForeignKey(e => e.MovieId)
+                .HasConstraintName("FK_Movie_Comment");
         });
 
         OnModelCreatingPartial(modelBuilder);
