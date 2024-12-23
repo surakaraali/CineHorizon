@@ -3,16 +3,12 @@
 @{
     ViewData["Title"] = "SERIES PAGE";
 }
-<h1>@ViewData["Title"]</h1>
 
 <style>
     body {
         margin: 0;
-        /* Kenar boşluklarını kaldır */
         padding: 0;
-        /* İç boşlukları kaldır */
         background-color: #000;
-        /* Arka planı siyah yap */
         border: #000 none;
     }
 
@@ -24,10 +20,17 @@
         letter-spacing: 1px;
 
     }
+    .row{
+        margin-top: 20px;
+    }
+    .title{
+        color: white;
+    }
 
 </style>
 
 <div class="row">
+    <h1 class="title">@ViewData["Title"]</h1>
     @foreach (var movie in Model!.Movies!) 
     {
         <div class="col-md-3 col-sm-6 mb-4">
