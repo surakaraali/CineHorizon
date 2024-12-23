@@ -22,7 +22,7 @@ VALUES ('Fight Club',
 
 INSERT INTO Movies (Title, Description, PosterUrl, Rating, ReleaseYear, MovieHour, Director, Writer, Trailer)
 VALUES 
-('Cumhuriyet Şarkısı', 
+('Cumhuriyet Sarkisi', 
     'A thief who steals corporate secrets through dream-sharing technology.',
     '/img/cumhuriyet_sarkısı.jpg',
     8.8,

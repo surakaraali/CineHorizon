@@ -63,7 +63,7 @@ namespace MyWebApp.Pages
             }
             
 
-            var movie = _context.Movies.Find(MovieId);
+            var movie = _context.Movies?.Find(MovieId);
             if (movie == null)
             {
                 return RedirectToPage("/Error");
@@ -76,7 +76,7 @@ namespace MyWebApp.Pages
                 CreatedAt = DateTime.UtcNow
             };
 
-            _context.Comments.Add(comment);
+            _context.Comments?.Add(comment);
             _context.SaveChanges();
 
             return RedirectToPage(new { id = movie.Title.Replace(" ", "-").ToLower() });
