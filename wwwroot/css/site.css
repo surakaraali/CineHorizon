@@ -41,8 +41,6 @@ body {
 .movie-poster {
   max-width: 100%;
   border-radius: 8px;
-  
-
 }
 
 .movie-card h2 {
@@ -56,7 +54,6 @@ body {
   font-size: 1em;
   margin: 5px 0;
   color:white;
-
 }
 
 
