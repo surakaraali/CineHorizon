@@ -7,16 +7,23 @@
 }
 
 <style>
+    h1 {
+        margin-top: 20px;
+
+    }
+
     #ReleaseYear {
         font-size: 20px;
-        color: rgb(36, 36, 36);
+        color: #ffffff;
         display: inline-block;
+        margin-right: 5px;
     }
 
     #MovieHour {
         font-size: 20px;
-        color: rgb(37, 37, 37);
+        color: #ffffff;
         display: inline-block;
+        margin-left: 5px;
     }
 
     #dot {
@@ -61,6 +68,8 @@
         padding: 0;
         margin: 0;
         gap: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
     }
 
     .genres ul li {
@@ -77,6 +86,136 @@
         background-color: #fbfafa;
         cursor: pointer;
     }
+
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .long_description p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .director,
+    .writer,
+    .actors {
+        font-size: 14px;
+        line-height: 1.8;
+        padding-bottom: 2px;
+        border-bottom: 1px solid #373737;
+        /* Gri çizgi */
+        margin-bottom: 10px;
+    }
+
+    .actors {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .actors span {
+        font-size: 14px;
+        color: #b3b3b3;
+    }
+
+    strong {
+        color: #ffffff;
+    }
+
+    /* Genel ayarlar */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Yorum ekleme formu */
+form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+form h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #373737;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none; /* Kullanıcının boyutunu değiştirmesini engeller */
+}
+
+textarea::placeholder {
+    color: #b3b3b3;
+}
+
+button {
+    background-color: #1db954;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #17a44a;
+}
+
+/* Yorumlar bölümü */
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+ul li strong {
+    color: #1db954;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #b3b3b3;
+    font-size: 14px;
+    margin-top: 0;
+}
+
 </style>
 
 <h1>@Model.Movie?.Title</h1>
@@ -113,13 +252,12 @@
         <p><strong>Writer:</strong> @Model.Movie?.Writer</p>
     </div>
     <div class="actors">
-        <strong>Actors:</strong>
-        <ul>
-            @foreach (var actor in Model.Movie?.Actors ?? new List<Actor>())
-            {
-                <li>@actor?.Name</li>
-            }
-        </ul>
+        <p>
+            <strong>Actors:</strong>
+            <span>
+                @string.Join(", ", Model.Movie?.Actors?.Select(actor => actor?.Name) ?? new List<string>())
+            </span>
+        </p>
     </div>
 </div>
 
