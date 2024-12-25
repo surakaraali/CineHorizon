@@ -17,9 +17,9 @@ namespace MyWebApp.Pages
             _context = context;
         }
 
-        public Movie Movie { get; set; }
-        public IList<Comment> Comments { get; set; } = new List<Comment>();
-        public IList<User> Likers { get; set; } = new List<User>();
+        public Movie? Movie { get; set; }
+        public IList<Comment>? Comments { get; set; } = new List<Comment>();
+        public IList<User>? Likers { get; set; } = new List<User>();
 
         [BindProperty]
         public int MovieId { get; set; }
@@ -29,7 +29,7 @@ namespace MyWebApp.Pages
 
         public void OnGet(string id)
         {
-            Movie = _context.Movies
+            Movie = _context.Movies?
                 .Include(m => m.Genres)
                 .Include(m => m.Actors)
                 .Include(m => m.MovieLikes)
@@ -39,13 +39,15 @@ namespace MyWebApp.Pages
             if (Movie != null)
             {
                 MovieId = Movie.Movieid;
-                Comments = _context.Comments
-                    .Where(c => c.MovieId == Movie.Movieid)
-                    .OrderByDescending(c => c.CreatedAt)
-                    .ToList();
+                Comments = _context.Comments?
+                   .Include(c => c.User) 
+                   .Where(c => c.MovieId == Movie.Movieid)
+                   .OrderByDescending(c => c.CreatedAt)
+                   .ToList();
 
-                Likers = Movie.MovieLikes
-                    .Select(ml => ml.User)
+                Likers = _context.MovieLikes?
+                    .Where(ml => ml.MovieId == Movie.Movieid)
+                    .Select(ml => new User { Uuid = ml.User.Uuid, Name = ml.User.Name }) 
                     .ToList();
             }
             else
@@ -68,17 +70,23 @@ namespace MyWebApp.Pages
                 return RedirectToPage("/Error");
             }
 
-            var userId = User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User?.FindFirstValue("UserId");
             if (userId == null)
             {
                 return RedirectToPage("/SignIn");
+            }
+
+            if (!int.TryParse(userId, out int parsedUserId))
+            {
+                return RedirectToPage("/Error");
             }
 
             var comment = new Comment
             {
                 MovieId = MovieId,
                 Content = CommentContent,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                UserId = parsedUserId
             };
 
             _context.Comments?.Add(comment);
@@ -89,7 +97,7 @@ namespace MyWebApp.Pages
 
         public IActionResult OnPostLike()
         {
-            var userId = User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User?.FindFirstValue("UserId");
             if (userId == null)
             {
                 return RedirectToPage("/SignIn");
@@ -106,9 +114,9 @@ namespace MyWebApp.Pages
                 return RedirectToPage("/Error");
             }
 
-            var existingLike = _context.MovieLikes
+            var existingLike = _context.MovieLikes?
                 .FirstOrDefault(ml => ml.MovieId == MovieId && ml.UserId == parsedUserId);
-
+                
             if (existingLike == null)
             {
                 var movieLike = new MovieLike

@@ -31,7 +31,7 @@ public partial class CineHorizonDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("CINEHORIZON_DB_CONNECTION") ??
-                                   "Host=localhost;Database=CineHorizonDB;Username=postgres;Password=sura123");
+                                   "Host=localhost;Database=CineHorizonDB;Username=postgres;Password=zeynep123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -47,25 +47,25 @@ public partial class CineHorizonDbContext : DbContext
                 .HasColumnName("name");
         });
 
-    modelBuilder.Entity<MovieLike>(entity =>
-    {
-        entity.HasKey(ml => new { ml.MovieId, ml.UserId }).HasName("movie_likes_pkey");
+        modelBuilder.Entity<MovieLike>(entity =>
+        {
+            entity.HasKey(ml => new { ml.MovieId, ml.UserId }).HasName("movie_likes_pkey");
 
-        entity.ToTable("movielikes");
+            entity.ToTable("movielikes");
 
-        entity.HasOne(ml => ml.Movie)
-            .WithMany(m => m.MovieLikes) 
-            .HasForeignKey(ml => ml.MovieId)
-            .HasConstraintName("fk_movie_like_movieid");
+            entity.HasOne(ml => ml.Movie)
+                .WithMany(m => m.MovieLikes)
+                .HasForeignKey(ml => ml.MovieId)
+                .HasConstraintName("fk_movie_like_movieid");
 
-        entity.HasOne(ml => ml.User)
-            .WithMany(u => u.LikedMovies) 
-            .HasForeignKey(ml => ml.UserId)
-            .HasConstraintName("fk_movie_like_userid");
+            entity.HasOne(ml => ml.User)
+                .WithMany(u => u.LikedMovies)
+                .HasForeignKey(ml => ml.UserId)
+                .HasConstraintName("fk_movie_like_userid");
 
-        entity.Property(ml => ml.MovieId).HasColumnName("movieid");
-        entity.Property(ml => ml.UserId).HasColumnName("userid");
-    });
+            entity.Property(ml => ml.MovieId).HasColumnName("movieid");
+            entity.Property(ml => ml.UserId).HasColumnName("userid");
+        });
 
 
         modelBuilder.Entity<Genre>(entity =>
@@ -143,22 +143,28 @@ public partial class CineHorizonDbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<Comment>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("comments_pkey");
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.HasKey(e => e.CommentId).HasName("comments_pkey");
 
-            entity.ToTable("comments");
+                entity.ToTable("comments");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.MovieId).HasColumnName("movieid");
-            entity.Property(e => e.Content).HasColumnName("content");
-            entity.Property(e => e.CreatedAt).HasColumnName("createdat");
+                entity.Property(e => e.CommentId).HasColumnName("id");
+                entity.Property(e => e.MovieId).HasColumnName("movieid");
+                entity.Property(e => e.UserId).HasColumnName("userid");
+                entity.Property(e => e.Content).HasColumnName("content");
+                entity.Property(e => e.CreatedAt).HasColumnName("createdat");
 
-            entity.HasOne<Movie>()
-                .WithMany()
-                .HasForeignKey(e => e.MovieId)
-                .HasConstraintName("FK_Movie_Comment");
-        });
+                entity.HasOne(c => c.Movie)
+                    .WithMany()
+                    .HasForeignKey(c => c.MovieId)
+                    .HasConstraintName("FK_Movie_Comment");
+
+                entity.HasOne(c => c.User)
+                    .WithMany()
+                    .HasForeignKey(c => c.UserId)
+                    .HasConstraintName("FK_Comment_User");
+            });
 
         modelBuilder.Entity<User>(entity =>
         {

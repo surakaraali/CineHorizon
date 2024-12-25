@@ -93,7 +93,7 @@
         color: #ffffff;
         font-family: Arial, sans-serif;
         margin: 0;
-        padding: 20px;
+        padding: 0px;
     }
 
     .long_description p {
@@ -110,7 +110,6 @@
         line-height: 1.8;
         padding-bottom: 2px;
         border-bottom: 1px solid #373737;
-        /* Gri çizgi */
         margin-bottom: 10px;
     }
 
@@ -128,95 +127,107 @@
         color: #ffffff;
     }
 
-    /* Genel ayarlar */
-body {
-    background-color: #121212;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-}
 
-/* Yorum ekleme formu */
-form {
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-}
+    .form {
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
 
-form h2 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #ffffff;
-}
+    form h2 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #ffffff;
+    }
 
-textarea {
-    width: 100%;
-    height: 100px;
-    background-color: #2a2a2a;
-    color: #ffffff;
-    border: 1px solid #373737;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 14px;
-    resize: none; /* Kullanıcının boyutunu değiştirmesini engeller */
-}
+    textarea {
+        width: 100%;
+        height: 100px;
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border: 1px solid #373737;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+        resize: none;
+    }
 
-textarea::placeholder {
-    color: #b3b3b3;
-}
+    textarea::placeholder {
+        color: #b3b3b3;
+    }
 
-button {
-    background-color: #1db954;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    button {
+        background-color: #1db954;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 
-button:hover {
-    background-color: #17a44a;
-}
+    button:hover {
+        background-color: #17a44a;
+    }
 
-/* Yorumlar bölümü */
-h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    margin-top: 50px;
-}
+    h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        margin-top: 50px;
+    }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-ul li {
-    background-color: #1e1e1e;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
+    ul li {
+        background-color: #1e1e1e;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
 
-ul li strong {
-    color: #1db954;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 5px;
-}
+    ul li strong {
+        color: #1aa73d;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+    }
 
-p {
-    color: #b3b3b3;
-    font-size: 14px;
-    margin-top: 0;
-}
+    p {
+        color: #b3b3b3;
+        font-size: 14px;
+        margin-top: 0;
+    }
 
+    li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    li strong {
+        margin-right: 5px;
+    }
+
+    li p {
+        margin: 0;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    span {
+        margin-right: 10px;
+    }
+    .likebutton{
+        margin: 20px;
+    }
 </style>
 
 <h1>@Model.Movie?.Title</h1>
@@ -233,17 +244,15 @@ p {
 </div>
 
 <div>
-    <form method="post" asp-page-handler="Like">
+    <form class="likebutton" method="post" asp-page-handler="Like">
+        <input type="hidden" name="MovieId" value="@Model.Movie?.Movieid" />
         <button type="submit">
-            @((Model.Likers.Any(l => l.Uuid == 
-                (int.TryParse(User?.FindFirstValue(ClaimTypes.NameIdentifier), out int userId) ? userId : 0)) ? "Unlike" : "Like")
-            )
+            @(Model.Likers.Any(l => l.Uuid == (int.TryParse(User?.FindFirstValue(ClaimTypes.NameIdentifier), out int
+                userId) ? userId : 0)) ? "Unlike" : "Like")
         </button>
     </form>
     <p>Liked by @Model.Likers.Count() people</p>
 </div>
-
-
 
 <div class="genres">
     <ul>
@@ -277,7 +286,7 @@ p {
 
 <div>
     <h2>Add a Comment</h2>
-    <form method="post">
+    <form class="form" method="post">
         <textarea name="CommentContent" placeholder="Write your comment here..."
             required>@Model.CommentContent</textarea>
         <input type="hidden" name="MovieId" value="@Model.Movie?.Movieid" />
@@ -295,7 +304,9 @@ p {
             @foreach (var comment in Model.Comments)
             {
                 <li>
-                    <strong>@comment.CreatedAt.ToString("yyyy-MM-dd HH:mm"):</strong> @comment.Content
+                    <strong>@comment.User?.Name @comment.User?.Surname</strong>
+                    <span>@comment.Content</span>
+                    <p>at<strong>@comment.CreatedAt.ToString("yyyy/MM/dd")</strong></p>
                 </li>
             }
         </ul>
