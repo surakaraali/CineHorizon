@@ -142,4 +142,8 @@ CREATE TABLE MovieLikes (
 );
 
 INSERT INTO MovieLikes (MovieId, UserId)
-VALUES (1, 4);  -- Example values: MovieId = 1, UserId = 4
+VALUES (1, 2);  -- Example values: MovieId = 1, UserId = 2
+
+-- comments tablosuna userid ekledik ki yorum yapanların ismi gözüksün.
+ALTER TABLE comments ADD COLUMN userid INT;
+ALTER TABLE comments ADD CONSTRAINT fk_comment_user FOREIGN KEY (userid) REFERENCES users(uuid);

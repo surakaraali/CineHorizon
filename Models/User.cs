@@ -5,7 +5,7 @@ namespace MyWebApp.Models
 {
     public partial class User
     {
-        public int Uuid { get; set; }
+        public int? Uuid { get; set; }
         public string? Email { get; set; }
         public string? Password {get; set;} 
         public string? Name {get; set;}
