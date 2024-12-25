@@ -6,7 +6,7 @@
 }
 
 .navbar .navbar-brand {
-  color: #fff; 
+  color: #fad60d; 
   font-weight: bold;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -59,11 +59,13 @@ main {
 }
 
 footer {
-  background-color: #000; 
-  color: #fff; 
+
+  color: #fad60d; 
   text-align: left; 
   margin: 0; 
   padding: 0px 0;
   border-top: none;
+  position: relative;
+  bottom: 0px;
 }
 
