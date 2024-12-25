@@ -111,3 +111,35 @@ CREATE TABLE comments (
     createdat TIMESTAMP NOT NULL,
     CONSTRAINT fk_movie_comment FOREIGN KEY (movieid) REFERENCES movies(movieid) ON DELETE CASCADE
 );
+
+UPDATE movies
+SET title = 'Cumhuriyet Sarkisi'
+WHERE movieid='3'
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    uuid bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    email character varying COLLATE pg_catalog."default" NOT NULL,
+    password character varying COLLATE pg_catalog."default" NOT NULL,
+    name character varying COLLATE pg_catalog."default",
+    surname character varying COLLATE pg_catalog."default",
+    CONSTRAINT users_pkey PRIMARY KEY (uuid)
+);
+
+INSERT INTO users (email, password, name, surname)
+VALUES 
+('zeynep@gmail.com', 'zeynep123', 'zeynep','gungor'),
+('sura@gmail.com', 'sura123', 'sura','karaali'),
+('simal@gmail.com', 'simal123', 'simal','kangalli');
+
+
+CREATE TABLE MovieLikes (
+    MovieId INT NOT NULL,
+    UserId INT NOT NULL,
+    PRIMARY KEY (MovieId, UserId),
+    FOREIGN KEY (MovieId) REFERENCES Movies(Movieid) ON DELETE CASCADE,
+    FOREIGN KEY (UserId) REFERENCES Users(Uuid) ON DELETE CASCADE
+);
+
+INSERT INTO MovieLikes (MovieId, UserId)
+VALUES (1, 4);  -- Example values: MovieId = 1, UserId = 4
