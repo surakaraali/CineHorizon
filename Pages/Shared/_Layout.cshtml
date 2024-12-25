@@ -19,7 +19,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse ">
+                <div class="navbar-collapse collapse">
                     <div class="navbar-nav">
                         <div class="nav-item1">
                             <a class="nav-link" href="/MoviesLayout">Movies</a>
@@ -29,6 +29,17 @@
                         </div>
                     </div>
                 </div>
+                    <div class="navbar-nav ml-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="navbar-text text-white">Hello, @User.Identity.Name</span>
+                            <a class="nav-link " href="/SignOut">Sign Out</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/SignIn">Sign In</a>
+                        }
+                    </div>
             </div>
         </nav>
     </header>

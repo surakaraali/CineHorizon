@@ -1,5 +1,6 @@
 @page "{id}"
 @using MyWebApp.Models
+@using System.Security.Claims
 @model MyWebApp.Pages.MovieDetailsModel
 
 @{
@@ -230,6 +231,19 @@ p {
     <img src="@Model.Movie?.Posterurl" alt="@Model.Movie?.Title poster" class="Poster">
     <iframe src="@Model.Movie?.Trailer" frameborder="0" class="Trailer"></iframe>
 </div>
+
+<div>
+    <form method="post" asp-page-handler="Like">
+        <button type="submit">
+            @((Model.Likers.Any(l => l.Uuid == 
+                (int.TryParse(User?.FindFirstValue(ClaimTypes.NameIdentifier), out int userId) ? userId : 0)) ? "Unlike" : "Like")
+            )
+        </button>
+    </form>
+    <p>Liked by @Model.Likers.Count() people</p>
+</div>
+
+
 
 <div class="genres">
     <ul>

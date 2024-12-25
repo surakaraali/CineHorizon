@@ -18,5 +18,7 @@ namespace MyWebApp.Models
         public virtual ICollection<Actor> Actors { get; set; } = new List<Actor>();
         public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
         public string? Type { get; set; }
+        public ICollection<MovieLike> MovieLikes { get; set; } = new List<MovieLike>();
+
     }
 }
