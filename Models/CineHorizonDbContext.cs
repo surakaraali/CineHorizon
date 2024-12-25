@@ -31,7 +31,7 @@ public partial class CineHorizonDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("CINEHORIZON_DB_CONNECTION") ??
-                                   "Host=localhost;Database=CineHorizonDB;Username=postgres;Password=zeynep123");
+                                   "Host=localhost;Database=CineHorizonDB;Username=postgres;Password=sura123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
