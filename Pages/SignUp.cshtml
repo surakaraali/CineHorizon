@@ -4,34 +4,121 @@
     ViewData["Title"] = "Sign Up";
 }
 
-<div class="container mt-5">
-    <h1 class="text-center">@ViewData["Title"]</h1>
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #ffffff;
+    }
+
+    .form-card {
+        background-color: #1e1e1e;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-card .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 1rem;
+        color: #b3b3b3;
+    }
+
+    input {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border: 1px solid #373737;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    input::placeholder {
+        color: #b3b3b3;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #1db954;
+    }
+
+    .btn-primary {
+        background-color: #1db954;
+        border: none;
+        color: #ffffff;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #17a44a;
+    }
+
+    .text-center p {
+        margin-top: 15px;
+        color: #b3b3b3;
+    }
+
+    .text-center a {
+        color: #1db954;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .text-center a:hover {
+        text-decoration: underline;
+    }
+    .baslık{
+        margin-top: 100px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="baslık">@ViewData["Title"]</h1>
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <form method="post">
-                <div class="form-group">
-                    <label for="Email">Email</label>
-                    <input type="email" class="form-control" id="Email" name="Email" required placeholder="Enter your email" />
-                </div>
-                <div class="form-group mt-3">
-                    <label for="Password">Password</label>
-                    <input type="password" class="form-control" id="Password" name="Password" required placeholder="Enter your password" />
-                </div>
-                <div class="form-group mt-3">
-                    <label for="Name">Name</label>
-                    <input type="text" class="form-control" id="Name" name="Name" required placeholder="Enter your name" />
-                </div>
-                <div class="form-group mt-3">
-                    <label for="Surname">Surname</label>
-                    <input type="text" class="form-control" id="Surname" name="Surname" required placeholder="Enter your surname" />
-                </div>
-                <div class="form-group mt-4">
-                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                </div>
+            <div class="form-card">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" id="Email" name="Email" required placeholder="Enter your email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" id="Password" name="Password" required placeholder="Enter your password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" required placeholder="Enter your name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Surname">Surname</label>
+                        <input type="text" class="form-control" id="Surname" name="Surname" required placeholder="Enter your surname" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
                 <div class="text-center mt-3">
                     <p>Have an account? <a asp-page="/SignIn">Sign In</a></p>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
